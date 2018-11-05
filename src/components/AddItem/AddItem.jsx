@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import validator from 'validator';
 
-import {Errors} from '../../constants/addItem';
+import {ERRORS} from '../../constants/addItem';
 
 import './AddItem.css';
 
@@ -82,13 +82,13 @@ export default class AddItem extends React.Component {
 
         if (!validator.isAlpha(name)) {
             formValidity = false;
-            errorType = Errors.name;
+            errorType = ERRORS.name;
         } else if (!price) {
             formValidity = false;
-            errorType = Errors.price;
+            errorType = ERRORS.price;
         } else if (!quantity) {
             formValidity = false;
-            errorType = Errors.quantity;
+            errorType = ERRORS.quantity;
         }
         if (!formValidity) {
             this.setState({formValidity, errorType})
