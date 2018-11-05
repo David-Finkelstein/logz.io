@@ -1,0 +1,6 @@
+.Notification {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 20px;
+}
