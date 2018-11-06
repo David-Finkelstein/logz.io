@@ -1,0 +1,29 @@
+.Cart {
+    border: 2px solid #504f4f;
+    display: inline-grid;
+    background: aliceblue;
+}
+
+.Cart-table:first-child th {
+    @font-family: Cochin;
+}
+
+.Cart-table {
+    width: 100%;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 2px solid #cbcbcb;
+}
+
+.Cart-table td, .Cart-table th {
+    border-left: black;
+    font-size: 13px;
+    margin: 0;
+    overflow: visible;
+    padding: 0.5em 1em;
+}
+
+.Cart-table-block {
+    max-height: 300px;
+    overflow-y: auto;
+}
