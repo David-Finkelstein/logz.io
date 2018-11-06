@@ -4,6 +4,10 @@ import {
   createOnDeleteItemAction,
   createOnClearCartAction,
 } from '../../action-creators/cart';
+import {
+  createOnClearCartNotificationAction,
+  createOnDeleteSucceededAction,
+} from '../../action-creators/notification';
 
 function mapStateToProps(state) {
   const items = Object.values(state.cart.toJS());
@@ -23,8 +27,15 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onClearCart: () => dispatch(createOnClearCartAction()),
-    onDeleteItem: itemId => dispatch(createOnDeleteItemAction(itemId)),
+    onClearCart: () => {
+      dispatch(createOnClearCartAction());
+      dispatch(createOnClearCartNotificationAction());
+    },
+
+    onDeleteItem: itemId => {
+      dispatch(createOnDeleteItemAction(itemId));
+      dispatch(createOnDeleteSucceededAction(itemId));
+    },
   };
 }
 
