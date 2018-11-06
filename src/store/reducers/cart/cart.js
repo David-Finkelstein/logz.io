@@ -19,6 +19,9 @@ export default (state = defaultState, action) => {
     case CartActionTypes.ON_CLEAR_CART:
       newState = defaultState;
       break;
+    case CartActionTypes.ON_EDIT_ITEM:
+      newState = newState.set(payload.itemId, immutable.Map(payload));
+      break;
     default:
       return newState;
   }

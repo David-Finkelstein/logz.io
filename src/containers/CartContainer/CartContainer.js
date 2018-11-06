@@ -3,10 +3,12 @@ import Cart from '../../components/Cart/Cart';
 import {
   createOnDeleteItemAction,
   createOnClearCartAction,
+  createOnEditItemAction,
 } from '../../action-creators/cart';
 import {
   createOnClearCartNotificationAction,
   createOnDeleteSucceededAction,
+  createOnEditItemSucceededAction,
 } from '../../action-creators/notification';
 
 function mapStateToProps(state) {
@@ -35,6 +37,11 @@ function mapDispatchToProps(dispatch) {
     onDeleteItem: itemId => {
       dispatch(createOnDeleteItemAction(itemId));
       dispatch(createOnDeleteSucceededAction(itemId));
+    },
+
+    onEditItem: (itemId, quantity, price) => {
+      dispatch(createOnEditItemAction(itemId, quantity, price));
+      dispatch(createOnEditItemSucceededAction(itemId));
     },
   };
 }

@@ -24,10 +24,19 @@ export const createOnClearCartNotificationAction = () => ({
     color: BLACK,
   },
 });
+
 export const createOnDeleteSucceededAction = itemId => ({
   type: NotificationActionTypes.ON_DELETE_SUCCEEDED,
   payload: {
     message: `The item id - "${itemId}" removed from the cart`,
+    color: BLUE,
+  },
+});
+
+export const createOnEditItemSucceededAction = itemId => ({
+  type: NotificationActionTypes.ON_EDIT_ITEM_SUCCEEDED,
+  payload: {
+    message: `The item id - "${itemId}" has been changed`,
     color: BLUE,
   },
 });

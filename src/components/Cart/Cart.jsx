@@ -9,6 +9,7 @@ import {
 } from '../../constants/cart';
 import ItemRow from '../common/ItemRow';
 import SortBy from '../SortBy/SortBy';
+import EditItem from '../EditItem';
 
 import './Cart.css';
 
@@ -23,7 +24,7 @@ export default class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModelOpen: false,
+      itemIsOnEditing: undefined,
       cartItems: props.cartItems,
       onSorting: false,
       sortBy: { sortBy: undefined, typeOfSorting: undefined },
@@ -31,7 +32,8 @@ export default class Cart extends React.Component {
 
     this._onDeleteItem = this._onDeleteItem.bind(this);
     this._onEditItem = this._onEditItem.bind(this);
-    this._onCloseModal = this._onCloseModal.bind(this);
+    this._onEditItemSumbmited = this._onEditItemSumbmited.bind(this);
+    this._onCloseEditItem = this._onCloseEditItem.bind(this);
     this._onSortByChanged = this._onSortByChanged.bind(this);
     this._onChangeSortParams = this._onChangeSortParams.bind(this);
   }
@@ -44,7 +46,7 @@ export default class Cart extends React.Component {
 
   render() {
     const { totalCartPrice, onClearCart } = this.props;
-    const { cartItems, onSorting } = this.state;
+    const { cartItems, onSorting, itemIsOnEditing } = this.state;
 
     return (
         <div className="Cart">
@@ -62,9 +64,9 @@ export default class Cart extends React.Component {
           <div className="Cart-table-block">
             <table className="Cart-table">
               <thead>
-                <tr>
-                  {TABLE_ROWS.map((row, index) => <th key={index}>{ row }</th>)}
-                </tr>
+              <tr>
+                {TABLE_ROWS.map((row, index) => <th key={index}>{row}</th>)}
+              </tr>
               </thead>
               <tbody>
               {
@@ -91,6 +93,13 @@ export default class Cart extends React.Component {
             >Clear all
             </button>
           </div>
+          {itemIsOnEditing ?
+              <EditItem
+                  itemId={itemIsOnEditing}
+                  onClose={this._onCloseEditItem}
+                  onEditItem={this._onEditItemSumbmited}
+              /> :
+              null}
         </div>
     );
   }
@@ -99,12 +108,16 @@ export default class Cart extends React.Component {
     this.props.onDeleteItem(itemId);
   }
 
-  _onCloseModal() {
-    this.setState({ isModelOpen: false });
+  _onCloseEditItem() {
+    this.setState({ itemIsOnEditing: undefined });
   }
 
-  _onEditItem() {
-    this.setState({ isModelOpen: true });
+  _onEditItem(itemId) {
+    this.setState({ itemIsOnEditing: itemId });
+  }
+
+  _onEditItemSumbmited(itemId, quantity, price) {
+    this.props.onEditItem(itemId, quantity, price);
   }
 
   /**
