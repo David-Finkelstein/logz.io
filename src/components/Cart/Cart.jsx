@@ -97,6 +97,14 @@ export default class Cart extends React.Component {
     this.props.onDeleteItem(itemId);
   }
 
+  _onCloseModal() {
+    this.setState({ isModelOpen: false });
+  }
+
+  _onEditItem() {
+    this.setState({ isModelOpen: true });
+  }
+
   /**
    * This function fires when the user changes the sort values in the sort Component usage as callback
    * @param sortBy -

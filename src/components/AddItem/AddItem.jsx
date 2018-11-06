@@ -88,14 +88,13 @@ export default class AddItem extends React.Component {
     } else if (!quantity) {
       formValidity = false;
       errorType = ERRORS.quantity;
-    } else {
-      if (!formValidity) {
-        this.setState({ formValidity, errorType });
-      } else {
-        this.props.onAddItem(name, price, quantity);
-        this.setState({ ...defaultInputFields, errorType: '' });
-      }
     }
 
+    if (!formValidity) {
+      this.setState({ formValidity, errorType });
+    } else {
+      this.props.onAddItem(name, price, quantity);
+      this.setState({ ...defaultInputFields, errorType: '' });
+    }
   }
 }
