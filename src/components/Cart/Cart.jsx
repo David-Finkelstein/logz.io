@@ -61,10 +61,12 @@ export default class Cart extends React.Component {
 
           <div className="Cart-table-block">
             <table className="Cart-table">
+              <thead>
+                <tr>
+                  {TABLE_ROWS.map((row, index) => <th key={index}>{ row }</th>)}
+                </tr>
+              </thead>
               <tbody>
-              <tr>
-                {TABLE_ROWS.map((row, index) => <th key={index}>{ row }</th>)}
-              </tr>
               {
                 cartItems.map(
                     ({ itemId, price, quantity, totalPriceForThisItem }, index) =>

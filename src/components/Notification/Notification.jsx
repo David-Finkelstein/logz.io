@@ -5,7 +5,7 @@ import './Notification.css';
 
 export default class Notification extends React.Component {
   static propTypes = {
-    messageData: PropTypes.object.isRequired,
+    messageData: PropTypes.object,
   };
 
   constructor(props) {
