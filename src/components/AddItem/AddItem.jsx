@@ -58,12 +58,10 @@ export default class AddItem extends React.Component {
   _onInputValueChanged(event) {
     let value = event.target.value;
 
-    if (!value) {
-      return;
-    } else if (event.target.name === 'name') {
+    if (event.target.name === 'name') {
       value = value.toLowerCase();
     } else {
-      value = parseInt(value) ? parseInt(value) : '';
+      value = parseInt(value) || '';
     }
 
     this.setState({ [event.target.name]: value });
